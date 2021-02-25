@@ -21,56 +21,56 @@ class iWorks_Footer_Notice {
 	 */
 	private $user_meta_name = __CLASS__;
 
-    private $data = array();
+	private $data = array();
 
-    /**
-     * cersion
-     */
-    private $version = '1.0.0';
-    
-    /**
-     * ID
-     */
-    private $id = 'iworks_cookie_notice';
+	/**
+	 * cersion
+	 */
+	private $version = '1.0.0';
+
+	/**
+	 * ID
+	 */
+	private $id = 'iworks_cookie_notice';
 
 	/**
 	 * Branda_Cookie_Notice constructor.
 	 */
-    public function __construct() {
+	public function __construct() {
 		add_action( 'after_setup_theme', array( $this, 'set_data' ) );
 		add_action( 'wp_footer', array( $this, 'add_cookie_notice' ), PHP_INT_MAX );
 		add_action( 'wp_ajax_iworks_footer_notice_logged', array( $this, 'save_user_meta' ) );
-        add_action( 'wp_ajax_nopriv_iworks_footer_notice_anonymous', array( $this, 'dismiss_visitor_notice' ) );
-        add_action( 'wp_enqueue_scripts', array( $this, 'register_scripts' ), 0 );
-        add_action( 'wp_enqueue_scripts', array( $this, 'enqueue_scripts' ), 234 );
-    }
+		add_action( 'wp_ajax_nopriv_iworks_footer_notice_anonymous', array( $this, 'dismiss_visitor_notice' ) );
+		add_action( 'wp_enqueue_scripts', array( $this, 'register_scripts' ), 0 );
+		add_action( 'wp_enqueue_scripts', array( $this, 'enqueue_scripts' ), 234 );
+	}
 
-    public function register_scripts() {
-        wp_register_script(
-            __CLASS__,
-            plugin_dir_url( __FILE__ ) . 'iworks-footer-notice.js',
-            array(),
-            $this->version,
-            true
-        );
-        wp_localize_script(
-            __CLASS__,
-            'iworks_footer_notice',
-            $this->data,
-        );
-    }
+	public function register_scripts() {
+		wp_register_script(
+			__CLASS__,
+			plugin_dir_url( __FILE__ ) . 'iworks-footer-notice.js',
+			array(),
+			$this->version,
+			true
+		);
+		wp_localize_script(
+			__CLASS__,
+			'iworks_footer_notice',
+			$this->data,
+		);
+	}
 
-    public function enqueue_scripts() {
-        wp_enqueue_script( __CLASS__ );
-    }
+	public function enqueue_scripts() {
+		wp_enqueue_script( __CLASS__ );
+	}
 
 	public function set_data() {
 		if ( ! function_exists( 'get_privacy_policy_url' ) ) {
 			return;
 		}
 		$this->data = array(
-			'name'    => $this->id,
-			'cookie'  => array(
+			'name'         => $this->id,
+			'cookie'       => array(
 				'domain'   => defined( 'COOKIE_DOMAIN' ) && COOKIE_DOMAIN ? COOKIE_DOMAIN : '',
 				'name'     => $this->cookie_name,
 				'path'     => defined( 'COOKIEPATH' ) && COOKIEPATH ? COOKIEPATH : '/',
@@ -78,26 +78,26 @@ class iWorks_Footer_Notice {
 				'timezone' => HOUR_IN_SECONDS * get_option( 'gmt_offset' ),
 				'value'    => YEAR_IN_SECONDS,
 			),
-			'ajaxurl' => admin_url( 'admin-ajax.php' ),
-			'logged'  => is_user_logged_in() ? 'yes' : 'no',
-			'user_id' => get_current_user_id(),
-			'nonce'   => wp_create_nonce( __CLASS__ ),
-			'text'    => sprintf(
+			'ajaxurl'      => admin_url( 'admin-ajax.php' ),
+			'logged'       => is_user_logged_in() ? 'yes' : 'no',
+			'user_id'      => get_current_user_id(),
+			'nonce'        => wp_create_nonce( __CLASS__ ),
+			'text'         => sprintf(
 				__( 'We use cookies and similar technologies to provide services and to gather information for statistical and other purposes. You can change the way you want the cookies to be stored or accessed on your device in the settings of your browser. If you do not agree, change the settings of your browser. For more information, refer to our %s.', 'iworks-footer-notice' ),
 				sprintf(
 					'<a href="%s">%s</a>',
 					get_privacy_policy_url(),
 					__( 'Privacy Policy', 'iworks-footer-notice' )
 				)
-            ),
-            'functions' => array(), // placeholder for binded javascripts
-            'ajax_actions' => array(
-                'logged' => 'iworks_footer_notice_logged',
-                'anonymous'=> 'iworks_footer_notice_anonymous',
-            ),
-            'button_close' => array(
-                'element_id' => 'iworks-footer-notice-button-close',
-            ),
+			),
+			'functions'    => array(), // placeholder for binded javascripts
+			'ajax_actions' => array(
+				'logged'    => 'iworks_footer_notice_logged',
+				'anonymous' => 'iworks_footer_notice_anonymous',
+			),
+			'button_close' => array(
+				'element_id' => 'iworks-footer-notice-button-close',
+			),
 		);
 	}
 
@@ -110,12 +110,12 @@ class iWorks_Footer_Notice {
 		$show = $this->show_cookie_notice();
 		if ( ! $show ) {
 			return;
-        }
-        if ( ! isset( $this->data['name'] ) ) {
-            return;
-        }
+		}
+		if ( ! isset( $this->data['name'] ) ) {
+			return;
+		}
 		$content  = '';
-		$content .= PHP_EOL.'<!--googleoff: all-->'.PHP_EOL;
+		$content .= PHP_EOL . '<!--googleoff: all-->' . PHP_EOL;
 		$content .= sprintf(
 			'<div id="%s" role="banner">',
 			esc_attr( $this->data['name'] )
@@ -126,14 +126,14 @@ class iWorks_Footer_Notice {
 		);
 		// Data.
 		$content .= sprintf(
-            '<span><a href="#" class="button button-close" id="%s" aria-label="%s">%s</a></span>',
-            esc_attr( $this->data['button_close']['element_id'] ),
+			'<span><a href="#" class="button button-close" id="%s" aria-label="%s">%s</a></span>',
+			esc_attr( $this->data['button_close']['element_id'] ),
 			esc_attr__( 'Close cookie information.', 'iworks-footer-notice' ),
 			esc_html__( 'Close cookie information.', 'iworks-footer-notice' )
 		);
 		$content .= '</div>';
 		$content .= '</div>';
-		$content .= PHP_EOL.'<!--googleon: all-->'.PHP_EOL;
+		$content .= PHP_EOL . '<!--googleon: all-->' . PHP_EOL;
 		echo apply_filters( 'iworks_cookie_notice_output', $content, $this->data );
 	}
 
