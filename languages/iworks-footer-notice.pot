@@ -1,0 +1,48 @@
+# Copyright (C) 2021 Marcin Pietrzak
+# This file is distributed under the same license as the iWorks Footer Notice plugin.
+msgid ""
+msgstr ""
+"Project-Id-Version: iWorks Footer Notice PLUGIN_VERSION\n"
+"Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/iworks-footer-notice\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"POT-Creation-Date: 2021-02-25T09:11:49+01:00\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"X-Generator: WP-CLI 2.4.0\n"
+"X-Domain: iworks-footer-notice\n"
+
+#. Plugin Name of the plugin
+msgid "iWorks Footer Notice"
+msgstr ""
+
+#. Plugin URI of the plugin
+msgid "http://iworks.pl/iworks-footer-notice/"
+msgstr ""
+
+#. Description of the plugin
+msgid "Super Simple footer notice (GDPR + cookie)."
+msgstr ""
+
+#. Author of the plugin
+msgid "Marcin Pietrzak"
+msgstr ""
+
+#. Author URI of the plugin
+msgid "http://iworks.pl/"
+msgstr ""
+
+#: class-iworks-footer-notice.php:82
+msgid "We use cookies and similar technologies to provide services and to gather information for statistical and other purposes. You can change the way you want the cookies to be stored or accessed on your device in the settings of your browser. If you do not agree, change the settings of your browser. For more information, refer to our %s."
+msgstr ""
+
+#: class-iworks-footer-notice.php:86
+msgid "Privacy Policy"
+msgstr ""
+
+#: class-iworks-footer-notice.php:120
+#: class-iworks-footer-notice.php:121
+msgid "Close cookie information."
+msgstr ""

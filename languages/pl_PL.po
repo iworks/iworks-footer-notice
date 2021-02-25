@@ -1,0 +1,61 @@
+# Copyright (C) 2021 Marcin Pietrzak
+# This file is distributed under the same license as the iWorks Footer Notice plugin.
+msgid ""
+msgstr ""
+"Project-Id-Version: iWorks Footer Notice PLUGIN_VERSION\n"
+"Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/iworks-footer-"
+"notice\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"POT-Creation-Date: 2021-02-25T09:11:49+01:00\n"
+"PO-Revision-Date: 2021-02-25 09:14+0100\n"
+"X-Generator: Poedit 2.3\n"
+"X-Domain: iworks-footer-notice\n"
+"Last-Translator: Marcin Pietrzak <marcin@iworks.pl>\n"
+"Plural-Forms: nplurals=3; plural=(n==1 ? 0 : n%10>=2 && n%10<=4 && (n"
+"%100<12 || n%100>14) ? 1 : 2);\n"
+"Language: pl_PL\n"
+
+#. Plugin Name of the plugin
+msgid "iWorks Footer Notice"
+msgstr "iWorks Footer Notice"
+
+#. Plugin URI of the plugin
+msgid "http://iworks.pl/iworks-footer-notice/"
+msgstr "http://iworks.pl/iworks-footer-notice/"
+
+#. Description of the plugin
+msgid "Super Simple footer notice (GDPR + cookie)."
+msgstr ""
+
+#. Author of the plugin
+msgid "Marcin Pietrzak"
+msgstr "Marcin Pietrzak"
+
+#. Author URI of the plugin
+msgid "http://iworks.pl/"
+msgstr "http://iworks.pl/"
+
+#: class-iworks-footer-notice.php:82
+msgid ""
+"We use cookies and similar technologies to provide services and to gather "
+"information for statistical and other purposes. You can change the way you "
+"want the cookies to be stored or accessed on your device in the settings of "
+"your browser. If you do not agree, change the settings of your browser. For "
+"more information, refer to our %s."
+msgstr ""
+"Używamy cookies i podobnych technologii m.in. w celu świadczenia usług i w "
+"celach statystycznych. Można zmienić warunki przechowywania lub dostępu do "
+"plików cookies w przeglądarce, w jej ustawieniach. Jeżeli nie wyrażasz "
+"zgody – zmień ustawienia swojej przeglądarki. Więcej informacji znajdziesz "
+"w naszej %s."
+
+#: class-iworks-footer-notice.php:86
+msgid "Privacy Policy"
+msgstr "Polityka prywatności"
+
+#: class-iworks-footer-notice.php:120 class-iworks-footer-notice.php:121
+msgid "Close cookie information."
+msgstr "Zamknij informację o ciasteczkach."
