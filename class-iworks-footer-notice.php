@@ -68,36 +68,39 @@ class iWorks_Footer_Notice {
 		if ( ! function_exists( 'get_privacy_policy_url' ) ) {
 			return;
 		}
-		$this->data = array(
-			'name'         => $this->id,
-			'cookie'       => array(
-				'domain'   => defined( 'COOKIE_DOMAIN' ) && COOKIE_DOMAIN ? COOKIE_DOMAIN : '',
-				'name'     => $this->cookie_name,
-				'path'     => defined( 'COOKIEPATH' ) && COOKIEPATH ? COOKIEPATH : '/',
-				'secure'   => is_ssl() ? 'on' : 'off',
-				'timezone' => HOUR_IN_SECONDS * get_option( 'gmt_offset' ),
-				'value'    => YEAR_IN_SECONDS,
-			),
-			'ajaxurl'      => admin_url( 'admin-ajax.php' ),
-			'logged'       => is_user_logged_in() ? 'yes' : 'no',
-			'user_id'      => get_current_user_id(),
-			'nonce'        => wp_create_nonce( __CLASS__ ),
-			'text'         => sprintf(
-				__( 'We use cookies and similar technologies to provide services and to gather information for statistical and other purposes. You can change the way you want the cookies to be stored or accessed on your device in the settings of your browser. If you do not agree, change the settings of your browser. For more information, refer to our %s.', 'iworks-footer-notice' ),
-				sprintf(
-					'<a href="%s">%s</a>',
-					get_privacy_policy_url(),
-					__( 'Privacy Policy', 'iworks-footer-notice' )
-				)
-			),
-			'functions'    => array(), // placeholder for binded javascripts
-			'ajax_actions' => array(
-				'logged'    => 'iworks_footer_notice_logged',
-				'anonymous' => 'iworks_footer_notice_anonymous',
-			),
-			'button_close' => array(
-				'element_id' => 'iworks-footer-notice-button-close',
-			),
+		$this->data = apply_filters(
+			'iworks_footer_notice_data',
+			array(
+				'name'         => $this->id,
+				'cookie'       => array(
+					'domain'   => defined( 'COOKIE_DOMAIN' ) && COOKIE_DOMAIN ? COOKIE_DOMAIN : '',
+					'name'     => $this->cookie_name,
+					'path'     => defined( 'COOKIEPATH' ) && COOKIEPATH ? COOKIEPATH : '/',
+					'secure'   => is_ssl() ? 'on' : 'off',
+					'timezone' => HOUR_IN_SECONDS * get_option( 'gmt_offset' ),
+					'value'    => YEAR_IN_SECONDS,
+				),
+				'ajaxurl'      => admin_url( 'admin-ajax.php' ),
+				'logged'       => is_user_logged_in() ? 'yes' : 'no',
+				'user_id'      => get_current_user_id(),
+				'nonce'        => wp_create_nonce( __CLASS__ ),
+				'text'         => sprintf(
+					__( 'We use cookies and similar technologies to provide services and to gather information for statistical and other purposes. You can change the way you want the cookies to be stored or accessed on your device in the settings of your browser. If you do not agree, change the settings of your browser. For more information, refer to our %s.', 'iworks-footer-notice' ),
+					sprintf(
+						'<a href="%s">%s</a>',
+						get_privacy_policy_url(),
+						__( 'Privacy Policy', 'iworks-footer-notice' )
+					)
+				),
+				'functions'    => array(), // placeholder for binded javascripts
+				'ajax_actions' => array(
+					'logged'    => 'iworks_footer_notice_logged',
+					'anonymous' => 'iworks_footer_notice_anonymous',
+				),
+				'button_close' => array(
+					'element_id' => 'iworks-footer-notice-button-close',
+				),
+			)
 		);
 	}
 
@@ -121,12 +124,15 @@ class iWorks_Footer_Notice {
 			esc_attr( $this->data['name'] )
 		);
 		$content .= sprintf(
-			'<div class="cookie-notice-container"><span id="iworks-footer-notice-text" class="text">%s</span>',
+			'<div class="%s"><span class="%s">%s</span>',
+			esc_attr( apply_filters( 'iworks_cookie_notice_output_container_class', 'cookie-notice-container' ) ),
+			esc_attr( apply_filters( 'iworks_cookie_notice_output_text_class', 'text' ) ),
 			$this->data['text']
 		);
 		// Data.
 		$content .= sprintf(
-			'<span><a href="#" class="button button-close" id="%s" aria-label="%s">%s</a></span>',
+			'<span><a href="#" class="%s" id="%s" aria-label="%s">%s</a></span>',
+			esc_attr( apply_filters( 'iworks_cookie_notice_output_button_close_class', 'button button-close' ) ),
 			esc_attr( $this->data['button_close']['element_id'] ),
 			esc_attr__( 'Close cookie information.', 'iworks-footer-notice' ),
 			esc_html__( 'Close cookie information.', 'iworks-footer-notice' )
